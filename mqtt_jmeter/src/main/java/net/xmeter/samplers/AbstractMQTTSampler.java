@@ -132,9 +132,17 @@ public abstract class AbstractMQTTSampler extends AbstractSampler implements Con
 	public boolean isClientIdSuffix() {
 		return getPropertyAsBoolean(CONN_CLIENT_ID_SUFFIX, DEFAULT_ADD_CLIENT_ID_SUFFIX);
 	}
+
+	public String getClientIdSuffixMax(){
+		return getPropertyAsString(CONN_CLIENT_ID_SUFFIX_MAX,DEFAULT_CLIENT_ID_SUFFIX_MAX);
+	}
 	
 	public void setClientIdSuffix(boolean clientIdSuffix) {
 		setProperty(CONN_CLIENT_ID_SUFFIX, clientIdSuffix);
+	}
+
+	public void setClientIdSuffixMax(String clientIdSuffixMax){
+		setProperty(CONN_CLIENT_ID_SUFFIX_MAX, clientIdSuffixMax);
 	}
 
 	public String getConnAttamptMax() {

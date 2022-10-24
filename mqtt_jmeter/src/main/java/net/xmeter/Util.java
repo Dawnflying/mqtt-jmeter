@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.SecureRandom;
+import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -22,17 +23,17 @@ public class Util implements Constants {
     private static char[] seeds = "abcdefghijklmnopqrstuvwxmy0123456789".toCharArray();
     private static final Logger logger = Logger.getLogger(Util.class.getCanonicalName());
 
-	public static String generateClientId(String prefix) {
+	public static String generateClientId(String prefix,String clientIdSuffixMax) {
 		int leng = prefix.length();
 		int postLeng = MAX_CLIENT_ID_LENGTH - leng;
 		if (postLeng < 0) {
 			throw new IllegalArgumentException("ClientId prefix " + prefix + " is too long, max allowed is "
 					+ MAX_CLIENT_ID_LENGTH + " but was " + leng);
 		}
-		UUID uuid = UUID.randomUUID();
-		String string = uuid.toString().replace("-", "");
-		String post = string.substring(0, postLeng);
-		return prefix + post;
+		int maxSuffix = Integer.parseInt(clientIdSuffixMax);
+        Random random = new Random();
+		int val = Math.abs(random.nextInt(maxSuffix));
+		return prefix + val;
 	}
 
 	public static SSLContext getContext(AbstractMQTTSampler sampler) throws Exception {

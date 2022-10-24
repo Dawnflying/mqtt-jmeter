@@ -20,6 +20,7 @@ public interface Constants {
 	
 	public static final String CONN_CLIENT_ID_PREFIX = "mqtt.client_id_prefix";
 	public static final String CONN_CLIENT_ID_SUFFIX = "mqtt.client_id_suffix";
+	public static final String CONN_CLIENT_ID_SUFFIX_MAX = "mqtt.client_id_suffix_max";
 	
 	public static final String CONN_KEEP_ALIVE = "mqtt.conn_keep_alive";
 	public static final String CONN_ATTAMPT_MAX = "mqtt.conn_attampt_max";
@@ -70,8 +71,8 @@ public interface Constants {
 	public static final String DEFAULT_PROTOCOL = TCP_PROTOCOL;
 	public static final String FUSESOURCE_MQTT_CLIENT_NAME = "fusesource";
 	public static final String HIVEMQ_MQTT_CLIENT_NAME = "hivemq";
-//	public static final String DEFAULT_MQTT_CLIENT_NAME = FUSESOURCE_MQTT_CLIENT_NAME;
-	public static final String DEFAULT_MQTT_CLIENT_NAME = HIVEMQ_MQTT_CLIENT_NAME;
+	public static final String DEFAULT_MQTT_CLIENT_NAME = FUSESOURCE_MQTT_CLIENT_NAME;
+//	public static final String DEFAULT_MQTT_CLIENT_NAME = HIVEMQ_MQTT_CLIENT_NAME;
 	
 	public static final String JMETER_VARIABLE_PREFIX = "${";
 	
@@ -89,7 +90,10 @@ public interface Constants {
 	public static final String DEFAULT_MESSAGE_FIX_LENGTH = "1024";
 	
 	public static final boolean DEFAULT_ADD_CLIENT_ID_SUFFIX = true;
-	
+
+	public static final String DEFAULT_CLIENT_ID_SUFFIX_MAX = "1000";
+
+
 	public static final int SUB_FAIL_PENALTY = 1000; // force to delay 1s if sub fails for whatever reason
 	
 	public static final boolean DEFAULT_SUBSCRIBE_WHEN_CONNECTED = false;

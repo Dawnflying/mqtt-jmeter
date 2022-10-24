@@ -40,7 +40,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 	private final JLabeledTextField passwordAuth = new JLabeledTextField("Password:");
 
 	private JLabeledChoice protocols;
-//	private JLabeledChoice clientNames;
+	private JLabeledChoice clientNames;
 
 	private JCheckBox dualAuth = new JCheckBox("Dual SSL authentication");
 	private JLabeledTextField wsPath = new JLabeledTextField("WS Path: ", 10);
@@ -56,7 +56,9 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 //	private static final String TKS_BROWSE = "tks_browse";
 	private static final String CC_BROWSE = "cc_browse";
 	
-	public final JLabeledTextField connNamePrefix = new JLabeledTextField("ClientId:", 8);
+	public final JLabeledTextField connNamePrefix = new JLabeledTextField("ClientId:", 5);
+	public final JLabeledTextField connNameSuffixMax = new JLabeledTextField("RandomSuffixMax:", 3);
+
 	private JCheckBox connNameSuffix = new JCheckBox("Add random suffix for ClientId");
 	
 	private final JLabeledTextField connKeepAlive = new JLabeledTextField("Keep alive(s):", 3);
@@ -66,7 +68,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 
 	private final JLabeledTextField connCleanSession = new JLabeledTextField("Clean session:", 3);
 
-//	private final List<String> clientNamesList = MQTT.getAvailableNames();
+	private final List<String> clientNamesList = MQTT.getAvailableNames();
 
 	public JPanel createConnPanel() {
 		JPanel con = new HorizontalPanel();
@@ -93,6 +95,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 		JPanel optsPanel0 = new HorizontalPanel();
 		optsPanel0.add(connNamePrefix);
 		optsPanel0.add(connNameSuffix);
+		optsPanel0.add(connNameSuffixMax);
 		connNameSuffix.setSelected(true);
 		optsPanelCon.add(optsPanel0);
 		
@@ -301,6 +304,7 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 		} else {
 			connNameSuffix.setSelected(false);
 		}
+		connNameSuffixMax.setText(sampler.getClientIdSuffixMax());
 		
 		connKeepAlive.setText(sampler.getConnKeepAlive());
 		connAttmptMax.setText(sampler.getConnAttamptMax());
@@ -330,7 +334,8 @@ public class CommonConnUI implements ChangeListener, ActionListener, Constants{
 
 		sampler.setConnPrefix(connNamePrefix.getText());
 		sampler.setClientIdSuffix(connNameSuffix.isSelected());
-		
+		sampler.setClientIdSuffixMax(connNameSuffixMax.getText());
+
 		sampler.setConnKeepAlive(connKeepAlive.getText());
 		sampler.setConnAttamptMax(connAttmptMax.getText());
 		sampler.setConnReconnAttamptMax(reconnAttmptMax.getText());

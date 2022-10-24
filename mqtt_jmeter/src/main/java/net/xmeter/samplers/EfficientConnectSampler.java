@@ -71,7 +71,7 @@ public class EfficientConnectSampler extends AbstractMQTTSampler {
 			long cur = 0;
             String clientId;
             if(isClientIdSuffix()) {
-                clientId = Util.generateClientId(getConnPrefix());
+                clientId = Util.generateClientId(getConnPrefix(),getClientIdSuffixMax());
             } else {
 				clientId = getConnPrefix();
 				if (clientId != null && !clientId.isEmpty()) {

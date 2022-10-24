@@ -54,7 +54,7 @@ public class ConnectSampler extends AbstractMQTTSampler {
 
 			String clientId;
 			if(isClientIdSuffix()) {
-				clientId = Util.generateClientId(getConnPrefix());
+				clientId = Util.generateClientId(getConnPrefix(),getClientIdSuffixMax());
 			} else {
 				clientId = getConnPrefix();
 			}
